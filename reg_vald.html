@@ -1,0 +1,91 @@
+<!-- registration & valitation -->
+<!DOCTYPE html>
+<html ng-app="jobApp">
+
+<head>
+    <title>Job Registration Form</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <style>
+        .form-box {
+            width: 350px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 2px solid #333;
+            background-color: #f9f9f9;
+        }
+        input,
+        select {
+            width: 100%;
+            padding: 6px;
+            margin: 8px 0;
+        }
+        .error {
+            color: red;
+            font-size: 13px;
+        }
+        button {
+            padding: 8px;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body ng-controller="myCtrl">
+
+    <div class="form-box">
+        <h3>Job Registration Form</h3>
+
+        <form name="jobForm" novalidate>
+
+            Name:
+            <input type="text" name="name" ng-model="user.name" required>
+            <span class="error" ng-show="jobForm.name.$touched && jobForm.name.$invalid">
+                Name is required
+            </span>
+
+            Email:
+            <input type="email" name="email" ng-model="user.email" required>
+            <span class="error" ng-show="jobForm.email.$touched && jobForm.email.$invalid">
+                Valid email is required
+            </span>
+
+            Age:
+            <input type="number" name="age" ng-model="user.age" min="18" max="60" required>
+            <span class="error" ng-show="jobForm.age.$touched && jobForm.age.$invalid">
+                Age must be between 18 and 60
+            </span>
+
+            Gender:
+            <select name="gender" ng-model="user.gender" required>
+                <option value="">Select</option>
+                <option>Male</option>
+                <option>Female</option>
+            </select>
+            <span class="error" ng-show="jobForm.gender.$touched && jobForm.gender.$invalid">
+                Select gender
+            </span>
+
+            <button ng-click="submitForm()" ng-disabled="jobForm.$invalid">
+                Submit
+            </button>
+
+        </form>
+
+        <p>{{message}}</p>
+    </div>
+
+    <script>
+        var app = angular.module('jobApp', []);
+
+        app.controller('myCtrl', function ($scope) {
+
+            $scope.submitForm = function () {
+                $scope.message = "Registration Successful! Welcome " + $scope.user.name;
+            };
+
+        });
+    </script>
+
+</body>
+
+</html>

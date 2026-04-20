@@ -1,0 +1,48 @@
+<!-- registration with css -->
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+    <title>AngularJS Form</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <style>
+        .form-box {
+            width: 300px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 2px solid #333;
+            background-color: #f2f2f2;
+        }
+        input {
+            margin: 10px 0;
+            padding: 5px;
+            width: 100%;
+        }
+        button {
+            padding: 8px;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body ng-controller="myCtrl">
+    <div class="form-box">
+        <h3>Registration Form</h3>
+        Name:
+        <input type="text" ng-model="name">
+        Age:
+        <input type="number" ng-model="age">
+        Submit:
+        <button ng-click="submitForm()">Submit</button>
+        <p>{{message}}</p>
+    </div>
+    <script>
+        var app = angular.module('myApp', []);
+        app.controller('myCtrl', function ($scope) {
+            $scope.submitForm = function () {
+                $scope.message = "Name: " + $scope.name + " | Age: " + $scope.age;
+            };
+        });
+    </script>
+</body>
+</html>

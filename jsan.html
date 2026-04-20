@@ -1,0 +1,26 @@
+<!-- accessing JSON File -->
+<!DOCTYPE html>
+<html ng-app="app">
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+
+<body ng-controller="myCtrl">
+    <ol>
+        <li ng-repeat="e in emp">{{e.name}}</li>
+    </ol>
+
+    <script>
+        var app = angular.module("app", []);
+
+        app.controller("myCtrl", function ($scope, $http) {
+            $http.get("11.json").then(function (res) {
+                    $scope.emp = res.data;
+                });
+        });
+    </script>
+
+</body>
+
+</html>
